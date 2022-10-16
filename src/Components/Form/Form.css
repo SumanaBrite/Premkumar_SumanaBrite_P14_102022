@@ -1,0 +1,72 @@
+.formContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    width: 291px;
+    background-color: rgb(147, 173, 24);
+}
+
+.formTitle {
+    margin: 20px auto;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 22px;
+    justify-content: left;
+}
+
+.formUpperPart {
+    max-width: 200px;
+}
+
+.formLabel {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+}
+
+.formInput {
+    margin-top: 10px;
+    max-width: 171px;
+}
+
+.formSelect {
+    margin-top: 10px;
+    padding: 8px 10px;
+    background: #f6f6f6;
+    border: 1px solid #c5c5c5;
+    border-radius: 3px;
+}
+
+.fieldset {
+    border: 1px solid black;
+    padding: 15px 12px 10px;
+    margin: 20px 2px 0;
+    position: relative;
+}
+
+.fieldset:before {
+    content: 'Address';
+    position: absolute;
+    top: -12px;
+    background: #fff;
+    padding: 0 4px;
+    left: 8px;
+}
+
+.btn-modal {
+    margin: 18px auto;
+    width: 46px;
+}
+
+input[type='date']:required:invalid::-webkit-datetime-edit {
+    color: transparent;
+}
+
+input[type='date']:focus::-webkit-datetime-edit {
+    color: black !important;
+}

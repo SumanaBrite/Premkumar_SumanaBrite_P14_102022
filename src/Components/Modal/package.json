@@ -1,0 +1,14 @@
+{
+  "name": "@sumanabrite/r-modal",
+  "version": "1.1.0",
+  "description": "modal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "modal"
+  ],
+  "author": "sb",
+  "license": "ISC"
+}

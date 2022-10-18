@@ -1,0 +1,21 @@
+.header {
+    display: flex;
+    justify-content: center;
+    background-color: black;
+    align-content: center;
+    flex-direction: row;
+
+}
+
+.logo {
+    height: 5rem;
+    width: 5rem;
+    margin-top: 1rem;
+
+}
+
+.title {
+    font-size: 3rem;
+
+    color: rgb(147, 173, 24);
+}

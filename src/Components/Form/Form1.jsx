@@ -3,8 +3,8 @@ import states from '../../Data/states'
 import departments from '../../Data/departments'
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import employeesData from '../../Data/employees';
-
+import { Controller, useForm } from 'react-hook-form';
+import Select from 'react-select';
 import { useState } from 'react'
 import useGlobalState from '../../State/State'
 // import Modal from '../Modal/Modal'
@@ -13,6 +13,8 @@ import React from 'react'
 
 
 export default function Form() {
+    const { register, handleSubmit, control } = useForm();
+
     const [employees, setEmployees] = useGlobalState('employee')
     const [selectedDate, setSelectedDate] = useState()
 
@@ -29,7 +31,7 @@ export default function Form() {
         zipCode: '',
     })
 
-    const handleFormChange = (e) => {
+    const handleFormChange = (e, employee) => {
         e.preventDefault()
 
         const fieldName = e.target.getAttribute('name')
@@ -39,6 +41,7 @@ export default function Form() {
         newData[fieldName] = fieldValue
 
         setData(newData)
+        console.log(newData);
     }
 
     const [isValid, setIsValid] = useState(false)
@@ -56,7 +59,7 @@ export default function Form() {
     const departmentsSorted = departments.sort(sortData)
     const statesSorted = states.sort(sortData)
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = (e, employee) => {
         e.preventDefault()
 
         const newEmployee = {
@@ -71,7 +74,6 @@ export default function Form() {
             zipCode: addData.zipCode,
         }
 
-        // const newEmployees = [...employeesData, ...employees, newEmployee]
         const newEmployees = [...employees, newEmployee]
         setEmployees(newEmployees)
         setIsValid(true)
@@ -79,58 +81,66 @@ export default function Form() {
         const form = e.target
         form.reset()
     }
+
     return (
         <section className="formContent">
-            <h3 className="formTitle">Create Employee</h3>
+            <h2 className="formTitle">Create Employee</h2>
             <form className="form"
-                onSubmit={handleFormSubmit}
+                onSubmit={handleSubmit(handleFormSubmit)}
             >
-                <div className="">
-                    <div className='namePart'>
-                        <label className="formLabel">
-                            First Name
-                            <input
-                                className="formInput"
-                                type="text"
-                                name="firstname"
-                                onChange={handleFormChange}
-                                required
-                            />
-                        </label>
-                        <label className="formLabel">
-                            Last Name
-                            <input
-                                className="formInput"
-                                type="text"
-                                name="lastname"
-                                onChange={handleFormChange}
-                                required
-                            />
-                        </label>
-                    </div>
-                    <div className='datePart'>
-                        <label className="formLabel">
-                            Date of Birth
-                            <input
-                                className="formInput"
-                                type="date"
-                                name="dateOfBirth"
-                                onChange={handleFormChange}
-                                required
-                            />
-                        </label>
+                <div className="formUpperPart">
+                    <label className="formLabel">
+                        First Name
+                        <input
+                            className="formInput"
+                            type="text"
+                            name="firstname"
+                            onChange={handleFormChange}
+                            required
+                        />
+                    </label>
+                    <label className="formLabel">
+                        Last Name
+                        <input
+                            className="formInput"
+                            type="text"
+                            name="lastname"
+                            onChange={handleFormChange}
+                            required
+                        />
+                    </label>
 
-                        <label className="formLabel">
-                            Start Date
-                            <input
-                                className="formInput"
-                                type="date"
-                                name="startDate"
-                                onChange={handleFormChange}
-                                required
-                            />
-                        </label>
-                    </div>
+                    <label className="formLabel">
+                        Date of Birth
+                        <Controller
+                            name='dateOfBirth'
+                            control={control}
+                            rules={{ required: true }}
+                            render={({ field: { onChange, value } }) => (
+                                <DatePicker
+                                    onChange={onChange}
+                                    selected={value}
+                                    placeholderText={new Date().toLocaleDateString('en-US')}
+                                // yearDropdownItemNumber={50}
+                                // showYearDropdown
+                                // scrollableYearDropdown
+                                // showMonthDropdown
+                                />
+                            )}
+                        />
+
+                    </label>
+
+                    <label className="formLabel">
+                        Start Date
+                        <input
+                            className="formInput"
+                            type="date"
+                            name="startDate"
+                            onChange={handleFormChange}
+                            required
+                        />
+                    </label>
                 </div>
                 <div className="fieldset">
                     <label className="formLabel">
@@ -153,24 +163,17 @@ export default function Form() {
                             required
                         />
                     </label>
-                    <label className="formLabel">
-                        State
-                        <select
-                            className="formSelect"
-                            name="state"
-                            onChange={handleFormChange}
-                            required
-                        >
-                            <option value=""></option>
-                            {statesSorted.map((state, index) => {
-                                return (
-                                    <option key={index} value={state.abbreviation}>
-                                        {state.name}
-                                    </option>
-                                )
-                            })}
-                        </select>
-                    </label>
+                    <label htmlFor='state'>State</label>
+                    <Controller
+                        name='state'
+                        control={control}
+                        onChange={handleFormChange}
+
+                        rules={{ required: true }}
+                        render={({ field }) => (
+                            <Select {...field} options={statesSorted} />
+                        )}
+                    />
                     <label className="formLabel">
                         Zip Code
                         <input

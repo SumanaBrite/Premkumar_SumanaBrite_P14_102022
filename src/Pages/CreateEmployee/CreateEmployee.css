@@ -1,4 +1,21 @@
-.formTitle {
+.tableView {
     display: flex;
     justify-content: center;
+    font-size: 1.5rem;
+    color: rgb(147, 173, 24);
+    margin-bottom: 1rem;
+
+}
+
+
+.createEmployee {
+    background-color: white;
+    max-width: 1440px;
+    margin: auto;
+    padding: 0 7%;
+    line-height: 1;
+    height: 100vh;
+    background-position: bottom -5rem right -5rem;
+    background-repeat: no-repeat;
+    background-size: 15rem;
 }

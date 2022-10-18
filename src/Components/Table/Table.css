@@ -5,7 +5,32 @@
 
 .table-section {
     background: white;
-    padding: 1rem;
+    padding: 2rem;
+    margin-top: 1rem;
     margin: auto;
     justify-content: center;
+}
+
+.enFRLZ {
+    margin: auto;
+}
+
+.dwPorI {
+    width: 80%;
+    margin: auto;
+}
+
+.sc-gswNZR {
+    margin: auto;
+}
+
+.iKbQpp th, .iKbQpp td {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid black;
+}
+
+.homeBtn {
+    padding: 1rem;
+    margin: 1rem 47%;
 }

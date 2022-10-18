@@ -1,7 +1,10 @@
 import { createGlobalState } from 'react-hooks-global-state'
+import employeesData from '../Data/employees'
+
+
 
 const initialState = {
-    employee: '',
+    employee: employeesData,
 }
 
 const { useGlobalState } = createGlobalState(initialState)

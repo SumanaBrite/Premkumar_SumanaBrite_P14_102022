@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom'
+import employeesData from '../../Data/employees';
 
 import {
 	useSortBy,
@@ -84,93 +85,95 @@ const Table = (e) => {
 		usePagination
 	);
 
+
+
+
 	return (
-		<div className='table-section'>
-			<div className='table-content'>
-				<SearchContainer>
-					<label>
-						Show{' '}
-						<select
-							name='pageSize'
-							value={state.pageSize}
-							onChange={(e) => setPageSize(Number(e.target.value))}
-						>
-							{[10, 25, 50, 100].map((size) => (
-								<option key={size} value={size}>
-									{size}
-								</option>
-							))}
-						</select>{' '}
-						entries
-					</label>
-					<GlobalFilter
-						filter={state.globalFilter}
-						setFilter={setGlobalFilter}
-					/>
-				</SearchContainer>
-				<StyledTable {...getTableProps()}>
-					<thead>
-						{headerGroups.map((headerGroup) => (
-							<tr {...headerGroup.getHeaderGroupProps()}>
-								{headerGroup.headers.map((column) => (
-									<th
-										{...column.getHeaderProps(
-											column.getSortByToggleProps()
-										)}
-									>
-										{column.render('Header')}
-										{column.isSorted
-											? column.isSortedDesc
-												? ' ▼'
-												: ' ▲'
-											: ''}
-									</th>
+		<div className='table-bg'>
+			<div className='table-section'>
+				<div className='table-content'>
+					<SearchContainer>
+						<label>
+							Show{' '}
+							<select
+								name='pageSize'
+								value={state.pageSize}
+								onChange={(e) => setPageSize(Number(e.target.value))}
+							>
+								{[10, 25, 50, 100].map((size) => (
+									<option key={size} value={size}>
+										{size}
+									</option>
 								))}
-							</tr>
-						))}
-					</thead>
-					<tbody {...getTableBodyProps()}>
-						{page.map((row) => {
-							prepareRow(row);
-							return (
-								<tr {...row.getRowProps()}>
-									{row.cells.map((cell) => {
-										return (
-											<td {...cell.getCellProps()}>
-												{cell.render('Cell')}
-											</td>
-										);
-									})}
+							</select>{' '}
+							entries
+						</label>
+						<GlobalFilter
+							filter={state.globalFilter}
+							setFilter={setGlobalFilter}
+						/>
+					</SearchContainer>
+					<StyledTable {...getTableProps()}>
+						<thead>
+							{headerGroups.map((headerGroup) => (
+								<tr {...headerGroup.getHeaderGroupProps()}>
+									{headerGroup.headers.map((column) => (
+										<th
+											{...column.getHeaderProps(
+												column.getSortByToggleProps()
+											)}
+										>
+											{column.render('Header')}
+											{column.isSorted
+												? column.isSortedDesc
+													? ' ▼'
+													: ' ▲'
+												: ''}
+										</th>
+									))}
 								</tr>
-							);
-						})}
-					</tbody>
-				</StyledTable>
-				<Pagination>
-					<button
-						onClick={() => previousPage()}
-						disabled={!canPreviousPage}
-					>
-						Previous
-					</button>
-					<span>
-						{' '}
-						Page {state.pageIndex + 1} of {pageOptions.length}{' '}
-					</span>
-					<button onClick={() => nextPage()} disabled={!canNextPage}>
-						Next
-					</button>
-				</Pagination>
-				<Link className="homeBtn" to="/">
-					Home
-				</Link>
+							))}
+						</thead>
+						<tbody {...getTableBodyProps()}>
+							{page.map((row) => {
+								prepareRow(row);
+								return (
+									<tr {...row.getRowProps()}>
+										{row.cells.map((cell) => {
+											return (
+												<td {...cell.getCellProps()}>
+													{cell.render('Cell')}
+												</td>
+											);
+										})}
+									</tr>
+								);
+							})}
+						</tbody>
+					</StyledTable>
+					<Pagination>
+						<button
+							onClick={() => previousPage()}
+							disabled={!canPreviousPage}
+						>
+							Previous
+						</button>
+						<span>
+							{' '}
+							Page {state.pageIndex + 1} of {pageOptions.length}{' '}
+						</span>
+						<button onClick={() => nextPage()} disabled={!canNextPage}>
+							Next
+						</button>
+					</Pagination>
+					<Link className="homeBtn" to="/">
+						Home
+					</Link>
+				</div>
 			</div>
 		</div>
 	);
 };
 
-Table.propTypes = {
-	employees: PropTypes.array.isRequired,
-};
 
 export default Table;

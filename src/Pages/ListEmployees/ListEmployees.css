@@ -1,4 +1,12 @@
 .employeeContainer {
-    padding: 2rem;
+    padding: 5rem;
     background-color: rgb(147, 173, 24);
+}
+
+@media (max-width: 768px) {
+    .employeeContainer {
+        padding: 0rem;
+        font-size: smaller;
+        /* background-color: white; */
+    }
 }

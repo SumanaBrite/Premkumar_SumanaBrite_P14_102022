@@ -18,7 +18,8 @@ import useGlobalState from '../../State/State';
 import './Table.css'
 
 const SearchContainer = styled.div`
-	width: 80%;
+	width: 100%;
+	margin:auto;
 	display: flex;
 	justify-content: space-between;
 	input,
@@ -31,7 +32,7 @@ const SearchContainer = styled.div`
 `;
 
 const StyledTable = styled.table`
-	width: 80%;
+	width: 100%;
 	border-spacing: 0;
 	tr {
 		:last-child {

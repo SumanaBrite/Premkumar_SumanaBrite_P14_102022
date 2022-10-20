@@ -1,9 +1,8 @@
 import './Form.css'
 import states from '../../Data/states'
 import departments from '../../Data/departments'
-import DatePicker from 'react-datepicker';
+// import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import employeesData from '../../Data/employees';
 
 import { useState } from 'react'
 import useGlobalState from '../../State/State'
@@ -14,9 +13,6 @@ import React from 'react'
 
 export default function Form() {
     const [employees, setEmployees] = useGlobalState('employee')
-    const [selectedDate, setSelectedDate] = useState()
-
-
     const [addData, setData] = useState({
         firstname: '',
         lastname: '',
@@ -71,13 +67,12 @@ export default function Form() {
             zipCode: addData.zipCode,
         }
 
-        // const newEmployees = [...employeesData, ...employees, newEmployee]
         const newEmployees = [...employees, newEmployee]
         setEmployees(newEmployees)
         setIsValid(true)
 
-        const form = e.target
-        form.reset()
+        // const form = e.target
+        // form.reset()
     }
     return (
         <section className="formContent">

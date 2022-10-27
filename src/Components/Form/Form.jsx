@@ -6,10 +6,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { useState } from 'react'
 import useGlobalState from '../../State/State'
-// import Modal from '../Modal/Modal'
-import Modal from '@sumanabrite/r-modal'
+// import { Modal } from '../Modal/Modal'
+import { Modal } from '@sumanabrite/reactmodal'
 import React from 'react'
-
 
 export default function Form() {
     const [employees, setEmployees] = useGlobalState('employee')
@@ -71,8 +70,8 @@ export default function Form() {
         setEmployees(newEmployees)
         setIsValid(true)
 
-        // const form = e.target
-        // form.reset()
+        const form = e.target
+        form.reset()
     }
     return (
         <section className="formContent">

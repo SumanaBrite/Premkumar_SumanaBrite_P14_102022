@@ -1,14 +1,13 @@
 import './Form.css'
 import states from '../../Data/states'
 import departments from '../../Data/departments'
-// import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import PropTypes from 'prop-types';
 
 import { useState } from 'react'
 import useGlobalState from '../../State/State'
-// import { Modal } from '../Modal/Modal'
-import { Modal } from '@sumanabrite/reactmodal'
+import { Modal } from '@sumanabrite/modal-react'
 import React from 'react'
+
 
 export default function Form() {
     const [employees, setEmployees] = useGlobalState('employee')
@@ -84,6 +83,7 @@ export default function Form() {
                         <label className="formLabel">
                             First Name
                             <input
+                                aria-label="firstName"
                                 className="formInput"
                                 type="text"
                                 name="firstname"
@@ -94,6 +94,7 @@ export default function Form() {
                         <label className="formLabel">
                             Last Name
                             <input
+                                aria-label="lastName"
                                 className="formInput"
                                 type="text"
                                 name="lastname"
@@ -106,6 +107,7 @@ export default function Form() {
                         <label className="formLabel">
                             Date of Birth
                             <input
+                                aria-label="dateOfBirth"
                                 className="formInput"
                                 type="date"
                                 name="dateOfBirth"
@@ -117,6 +119,7 @@ export default function Form() {
                         <label className="formLabel">
                             Start Date
                             <input
+                                aria-label="startDate"
                                 className="formInput"
                                 type="date"
                                 name="startDate"
@@ -130,6 +133,7 @@ export default function Form() {
                     <label className="formLabel">
                         Street
                         <input
+                            aria-label="street"
                             className="formInput"
                             type="text"
                             name="street"
@@ -140,6 +144,7 @@ export default function Form() {
                     <label className="formLabel">
                         City
                         <input
+                            aria-label="city"
                             className="formInput"
                             type="text"
                             name="city"
@@ -168,8 +173,9 @@ export default function Form() {
                     <label className="formLabel">
                         Zip Code
                         <input
+                            aria-label="zipCode"
                             className="formInput"
-                            type="text"
+                            type="number"
                             name="zipCode"
                             onChange={handleFormChange}
                             required
@@ -209,3 +215,8 @@ export default function Form() {
         </section>
     )
 }
+
+useGlobalState.propTypes = {
+    employees: PropTypes.array,
+
+};

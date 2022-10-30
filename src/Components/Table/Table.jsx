@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom'
-import employeesData from '../../Data/employees';
 
 import {
 	useSortBy,
@@ -9,11 +8,11 @@ import {
 	usePagination,
 } from 'react-table';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 import GlobalFilter from '../GlobalFilter/GlobalFilter';
 import { COLUMNS } from '../../Data/columns';
 import useGlobalState from '../../State/State';
+import PropTypes from 'prop-types';
 
 import './Table.css'
 
@@ -176,5 +175,8 @@ const Table = (e) => {
 	);
 };
 
+useGlobalState.propTypes = {
+	employees: PropTypes.array,
 
+};
 export default Table;

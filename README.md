@@ -9,6 +9,11 @@ Convert a jQuery library to React Application
 #### Main Technologies
 - [React](https://reactjs.org/)
 
+## Plugin converted to React modal
+
+- [Package npm](https://www.npmjs.com/package/@sumanabrite/modal-react)
+
+
 ## Installation 
 
 1. Clone this repository

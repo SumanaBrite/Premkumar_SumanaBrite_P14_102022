@@ -1,12 +1,14 @@
+import React from 'react'
+
 import './Form.css'
 import states from '../../Data/states'
 import departments from '../../Data/departments'
+
 import PropTypes from 'prop-types';
 
 import { useState } from 'react'
 import useGlobalState from '../../State/State'
 import { Modal } from '@sumanabrite/modal-react'
-import React from 'react'
 
 
 export default function Form() {
